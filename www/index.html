@@ -14,10 +14,11 @@
   <script src="lib/onsen/js/angular/angular.js"></script>    
   <script src="lib/onsen/js/onsenui.js"></script>    
 
-  <script src="cordova.js"></script>
-
+  <script src="js/jquery-1.10.2.min.js"></script>
+  
+  <script src="js/index.js"></script>
   <script>
-    var module = angular.module('app', ['onsen']);
+    var module = angular.module('app', ['onsen']);  
   </script>
 
   <style>
@@ -86,6 +87,16 @@
     var="menu" type="reveal" max-slide-distance="260px" swipable="true">
   </ons-sliding-menu>
 
+  <ons-modal var="modal" ng-controller="ModalController">
+    <a id="modal-close">
+      <ons-icon icon="fa-times" size="20px" fixed-width="true"></ons-icon>
+    </a>
+    <ons-icon icon="ion-loading-c" spin="true"></ons-icon>
+    <br><br>
+    Please wait.<br>Closing in 2 seconds.
+    <div id="testContent"></div>
+  </ons-modal>  
+
   <ons-template id="menu.html">
     <ons-page modifier="menu-page">
       <ons-toolbar modifier="transparent"></ons-toolbar>
@@ -115,13 +126,14 @@
       <br>
 
       <ons-list class="bottom-menu-list">
+        <!--
         <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
           Settings
           <div class="notification menu-notification">3</div>
         </ons-list-item>
-
-        <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
-          Help
+        //-->
+        <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('contactUs.html', {closeMenu: true})">
+          Contact Us
         </ons-list-item>
 
         <ons-list-item class="bottom-menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
@@ -157,7 +169,7 @@
 
           <p style="color: #999; font-size: 13px;">Welcome to Nail to Toe Spa!<br> You can also swipe the page left/right.</p>
           //-->
-
+          status : <div id="statusContent"></div>
           <i>this is a landing page</i>
 
           <p>this section where to insert featured content such as promo, article, news, etc..</p>
@@ -190,7 +202,7 @@
   </ons-template>  
 
   <ons-template id="loyaltycard.html">
-    <ons-page>
+    <ons-page ng-controller="PageController">
       <ons-toolbar>
         <div class="left">
           <ons-toolbar-button ng-click="menu.toggle()">
@@ -221,7 +233,7 @@
           <p>
             1/10
           </p>
-          <ons-button modifier="cta" ng-click="menu.toggleMenu()">
+          <ons-button modifier="cta" id="btnStamp">
             Stamp Card!
           </ons-button>          
         </ons-col>
@@ -303,6 +315,31 @@
     </ons-page>
   </ons-template>
 
+  <ons-template id="contactUs.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button ng-click="menu.toggle()">
+            <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">Contact Us</div>
+      </ons-toolbar>
+
+
+      <ons-row style="margin-top: 10px;">
+        <ons-col align=""  width="55%">
+          <p>Opening Hours</p>
+          <ul>
+            <ol>Monday</ol>
+          </ul>
+        </ons-col>
+      </ons-row>
+
+    </ons-page>
+  </ons-template>
+
+
   <ons-template id="page2.html">
     <ons-page>
       <ons-toolbar>
@@ -326,5 +363,11 @@
     </ons-page>
   </ons-template>
  
+
+ 
 </body>
+
+
 </html>
+<script type="text/javascript" src="cordova.js"></script>
+<script src="js/index.js"></script>
