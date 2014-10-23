@@ -5,3 +5,11 @@
 	border: 1px solid black;
 	/* width and height can be anything, as long as they're equal */
 }
+
+.overlaptext{
+	position: absolute;
+	top: 120px;
+	color: white;
+	text-shadow: 1px 1px grey;
+	right: 10%;
+}

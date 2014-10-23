@@ -96,12 +96,12 @@
           Home
         </ons-list-item>
 
-        <ons-list-item class="menu-item" ng-click="menu.setMainPage('page2.html', {closeMenu: true})">
+        <ons-list-item class="menu-item" ng-click="menu.setMainPage('services.html', {closeMenu: true})">
           <ons-icon icon="fa-star"></ons-icon>
           Services
         </ons-list-item>
 
-        <ons-list-item class="menu-item" ng-click="menu.setMainPage('page1.html', {closeMenu: true})">
+        <ons-list-item class="menu-item" ng-click="menu.setMainPage('requestBooking.html', {closeMenu: true})">
           <ons-icon icon="fa-calendar"></ons-icon>
           Request Booking
         </ons-list-item>
@@ -142,7 +142,13 @@
         </div>
         <div class="center">Home</div>
       </ons-toolbar>
-      <ons-row style="margin-top: 100px;">
+      <ons-row>
+          <ons-col align="center">
+            <img class="aboutUs-img" width="100%" src="img/spa1.jpg">
+            <b class="overlaptext">Welcome to Nail to Toe spa!</b>
+          </ons-col>
+      </ons-row>
+      <ons-row style="margin-top: 30px;">
         <ons-col align="center">
           <!--
           <ons-button modifier="light" ng-click="menu.toggleMenu()">
@@ -151,10 +157,6 @@
 
           <p style="color: #999; font-size: 13px;">Welcome to Nail to Toe Spa!<br> You can also swipe the page left/right.</p>
           //-->
-
-          <b>Welcome to Nail to Toe spa!</b>
-
-          <br/><br/>
 
           <i>this is a landing page</i>
 
@@ -224,6 +226,80 @@
           </ons-button>          
         </ons-col>
       </ons-row>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="requestBooking.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button ng-click="menu.toggle()">
+            <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">Request Booking</div>
+      </ons-toolbar>
+
+      <ons-row style="margin-top: 10px;">
+        <ons-col align="center" width="100%">
+          <p>Thanks for your interest in booking a service with Nail to toe. Please complete the form below and one of our team will be in touch.</p>
+        </ons-col>
+      </ons-row>
+      <ons-row style="padding-top: 25px;">
+        <ons-col align="center" width="100%">
+          Your name
+        </ons-col>
+      </ons-row>
+      <ons-row style="padding-top: 5px;" align="center">
+        <ons-col align="center" width="100%">
+          <input class="text-input" placeholder="Type here">
+        </ons-col>
+      </ons-row>
+      <ons-row style="padding-top: 20px;">
+        <ons-col align="center" width="100%">
+          Instructions
+        </ons-col>
+      </ons-row>
+      <ons-row style="padding-top: 5px;" align="center">
+        <ons-col align="center" width="100%">
+          <textarea class="textarea" placeholder="Type here"></textarea>
+        </ons-col>
+      </ons-row>
+      <ons-row style="padding-top: 20px;">
+        <ons-col align="center" width="100%">
+          <ons-button modifier="cta" ng-click="menu.toggleMenu()">
+            Send Request
+          </ons-button>
+        </ons-col>
+      </ons-row>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="services.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button ng-click="menu.toggle()">
+            <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">Services</div>
+      </ons-toolbar>
+      <ons-row style="margin-top: 10px;">
+        <ons-col align="center">
+          <ons-list>
+            <ons-list-header><b>Classic Treatments</b></ons-list-header>
+            <ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron">Service 1</ons-list-item>
+            <ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron">Service 2</ons-list-item>
+          </ons-list>
+          <ons-list>
+            <ons-list-header><b>Paraffin Treatments</b></ons-list-header>
+            <ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron">Service 1</ons-list-item>
+            <ons-list-item class="list__item--tappable list__item__line-height" modifier="chevron">Service 2</ons-list-item>
+          </ons-list>
+        </ons-col>
+      </ons-row>
+
     </ons-page>
   </ons-template>
 
