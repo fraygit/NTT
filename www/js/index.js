@@ -20,7 +20,8 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        //$("#statusContent").html('initialize');
+        $("#statusContent").html('initialize');
+        $("#statusContent").html('initialize..');
     },
     // Bind Event Listeners
     //
@@ -28,15 +29,22 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         //$("#statusContent").html('bind events');
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('deviceready', function(){
+            $("#statusContent").html('device ready..');
+        }, false);
+        document.addEventListener('resume', this.onDeviceReady, false);
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-        $("#statusContent").html('device ready' + device.name);
+        $("#statusContent").html('device ready..');
+        app.receivedEvent('deviceready');        
+    },
+
+    onResume: function(){
+        $("#statusContent").html('resume');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -53,7 +61,7 @@ var app = {
     getDeviceId: function() {
         //var deviceId = window.device.uuid;
         if (window.device != undefined){
-            return window.device.name;
+            return window.device.uuid;
         }
         return '12345';
     }
@@ -61,7 +69,32 @@ var app = {
 
 app.initialize();
 
+var qrcode;
 
+var qrCodeApi = {
+    generateCode: function(el, txt){
+        qrcode = new QRCode(el, {
+            text: txt,
+            width: 128,
+            height: 128,
+            display: '',
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        $('#' + el).children('img').load(function(){
+            $('#' + el).children('img').css('display', 'inline');
+        });
+    },
+
+    clearCode: function(el){
+        //qrcode.clear();
+        $('#' + el).html('');
+    }
+};
+
+var module = angular.module('app', ['onsen']);  
 
 module.controller('PageController', function($scope) {
     ons.ready(function() {
@@ -71,9 +104,10 @@ module.controller('PageController', function($scope) {
         ons.compile(content);
         */
         $("#btnStamp").click(function() {
-            var content = document.getElementById("testContent");
-            content.innerHTML=app.getDeviceId();
-            ons.compile(content);
+            //var content = document.getElementById("testContent");
+            //content.innerHTML=app.getDeviceId();
+            //ons.compile(content);
+            qrCodeApi.generateCode('qrCodeEl', app.getDeviceId());
             modal.show();
             //setTimeout('modal.hide()', 2000);
           });
@@ -85,7 +119,10 @@ module.controller('ModalController', function($scope) {
     ons.ready(function() {
         $("#modal-close").click(function() {
             modal.hide();
+            qrCodeApi.clearCode('qrCodeEl');
           });
 
       });
   });  
+
+
